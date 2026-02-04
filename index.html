@@ -1,1 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Therapeutic Cold Plunge Waiver | Ocean Pacific Gym & Wellness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004999;
+            --text-dark: #1a1a2e;
+            --text-medium: #4a4a68;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --border-focus: #0066cc;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-white);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .need-help {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--bg-white);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 28px;
+        }
+
+        /* Form Styles */
+        .form-section {
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 16px;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-white);
+            color: var(--text-dark);
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* Waiver Content */
+        .waiver-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .waiver-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .waiver-card p {
+            font-size: 14px;
+            color: var(--text-medium);
+            margin-bottom: 12px;
+        }
+
+        .waiver-card ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        .waiver-card li {
+            font-size: 13px;
+            color: var(--text-medium);
+            margin-bottom: 6px;
+        }
+
+        .risk-list {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .risk-list h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .risk-list ul {
+            columns: 1;
+            padding-left: 18px;
+        }
+
+        .risk-list li {
+            font-size: 12px;
+            color: #92400e;
+            margin-bottom: 4px;
+        }
+
+        @media (min-width: 500px) {
+            .risk-list ul {
+                columns: 2;
+            }
+        }
+
+        /* Checkbox Styles */
+        .checkbox-group {
+            margin-bottom: 16px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-white);
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-container:hover {
+            border-color: var(--primary);
+        }
+
+        .checkbox-container.checked {
+            border-color: var(--primary);
+            background: rgba(0, 102, 204, 0.05);
+        }
+
+        .checkbox-container input {
+            display: none;
+        }
+
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            margin-top: 2px;
+        }
+
+        .checkbox-container.checked .custom-checkbox {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .custom-checkbox svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.15s ease;
+        }
+
+        .checkbox-container.checked .custom-checkbox svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        /* Signature Pad */
+        .signature-container {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .signature-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .signature-pad-wrapper {
+            position: relative;
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            background: #fafafa;
+            overflow: hidden;
+        }
+
+        .signature-pad-wrapper.has-signature {
+            border-style: solid;
+            border-color: var(--primary);
+        }
+
+        #signaturePad {
+            width: 100%;
+            height: 150px;
+            display: block;
+            touch-action: none;
+        }
+
+        .signature-line {
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            right: 20px;
+            height: 1px;
+            background: var(--border);
+            pointer-events: none;
+        }
+
+        .signature-hint {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: var(--text-light);
+            pointer-events: none;
+        }
+
+        .signature-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .clear-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 6px 12px;
+        }
+
+        .clear-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-family: inherit;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-primary:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--bg-white);
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+            margin-top: 12px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-light);
+        }
+
+        .button-group {
+            margin-top: 24px;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .summary-header {
+            background: var(--bg-light);
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-header h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .summary-body {
+            padding: 16px 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .summary-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        /* Success Page */
+        .success-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .success-message {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+
+        /* Location Info */
+        .location-info {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .location-info p {
+            font-size: 13px;
+            color: var(--text-medium);
+            margin: 2px 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Powered By */
+        .powered-by {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .zurich-logo {
+            height: 20px;
+        }
+
+        /* Date display */
+        .date-display {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        /* Scrollable waiver */
+        .waiver-scroll {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .waiver-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .waiver-scroll::-webkit-scrollbar-track {
+            background: var(--bg-light);
+            border-radius: 3px;
+        }
+
+        .waiver-scroll::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Ocean Pacific <span>Gym & Wellness</span></div>
+        <div class="need-help">Need help? (619) 377-4421</div>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 33%"></div>
+        </div>
+        <div class="progress-text">
+            <span id="progressStep">Step 1 of 3</span>
+            <span id="progressLabel">Participant Information</span>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Page 1: Participant Information -->
+        <div class="page active" id="page1">
+            <h1 class="page-title">Therapeutic Cold Plunge Waiver</h1>
+            <p class="page-subtitle">Please provide your information to continue.</p>
+
+            <div class="location-info">
+                <p><strong>Ocean Pacific Gym & Wellness</strong></p>
+                <p>4150 Mission Blvd St. 242</p>
+                <p>San Diego, CA 92109</p>
+            </div>
+
+            <div class="date-display" id="currentDate"></div>
+
+            <form id="participantForm">
+                <div class="form-section">
+                    <div class="section-title">Participant Information</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">First Name</label>
+                            <input type="text" class="form-input" id="firstName" placeholder="First name" required autocomplete="given-name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">Last Name</label>
+                            <input type="text" class="form-input" id="lastName" placeholder="Last name" required autocomplete="family-name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="dob">Date of Birth</label>
+                        <input type="date" class="form-input" id="dob" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" class="form-input" id="email" placeholder="your@email.com" required autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number</label>
+                        <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" required autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Continue to Waiver</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Page 2: Waiver & Acknowledgments -->
+        <div class="page" id="page2">
+            <h1 class="page-title">Medical Use Acknowledgment & Waiver</h1>
+            <p class="page-subtitle">Please review and accept the following terms.</p>
+
+            <div class="waiver-scroll">
+                <div class="waiver-card">
+                    <h3>Medical Use Acknowledgment</h3>
+                    <p>I acknowledge and affirm that my use of the cold plunge pool at Ocean Pacific Gym is solely for therapeutic and medical purposes, including aquatic therapy, physical therapy, rehabilitation, or recovery related to a diagnosed injury, illness, or medical condition.</p>
+                    <p><strong>I understand and agree that:</strong></p>
+                    <ul>
+                        <li>The cold plunge pool is classified and operated as a therapeutic tub, not as a recreational or public-use amenity.</li>
+                        <li>Access to the plunge pool is restricted to individuals receiving medically indicated therapeutic services.</li>
+                        <li>Use of the plunge pool is permitted only under the oversight and direction of a licensed Physical Therapist, licensed Occupational Therapist, or Certified Athletic Trainer.</li>
+                    </ul>
+                </div>
+
+                <div class="waiver-card">
+                    <h3>Medical Condition Disclosure</h3>
+                    <p>By signing this waiver, I confirm that:</p>
+                    <ul>
+                        <li>I have a medical condition, injury, or therapeutic indication for which cold plunge therapy has been recommended or deemed appropriate.</li>
+                        <li>I have disclosed all relevant medical conditions, contraindications, or health risks to the supervising therapist or trainer, including but not limited to cardiovascular conditions, neurological disorders, circulatory issues, pregnancy, or any condition that may increase risk during cold exposure.</li>
+                    </ul>
+                </div>
+
+                <div class="waiver-card">
+                    <h3>Assumption of Risk</h3>
+                    <p>I understand that cold plunge therapy involves exposure to cold temperatures and may pose risks including, but not limited to:</p>
+                    
+                    <div class="risk-list">
+                        <h4>⚠️ Potential Risks & Contraindications</h4>
+                        <ul>
+                            <li>Cold shock or dizziness</li>
+                            <li>Changes in heart rate or blood pressure</li>
+                            <li>Shortness of breath</li>
+                            <li>Muscle cramping or numbness</li>
+                            <li>Unstable angina or recent MI (&lt;6 months)</li>
+                            <li>Severe or uncontrolled hypertension</li>
+                            <li>Severe arrhythmias</li>
+                            <li>Symptomatic heart failure</li>
+                            <li>History of syncope related to cold</li>
+                            <li>Uncontrolled seizure disorder</li>
+                            <li>Recent stroke or TIA (&lt;6 months)</li>
+                            <li>Impaired thermoregulation</li>
+                            <li>Severe COPD with resting hypoxia</li>
+                            <li>Uncontrolled asthma</li>
+                            <li>Uncontrolled diabetes</li>
+                            <li>Hypothyroidism</li>
+                            <li>Chronic skin infections</li>
+                            <li>Untreated fungal infections</li>
+                            <li>Active communicable disease</li>
+                            <li>Pregnancy (unless cleared)</li>
+                            <li>Severe Raynaud's phenomenon</li>
+                        </ul>
+                    </div>
+                    
+                    <p>I knowingly and voluntarily assume all risks associated with participation in therapeutic cold plunge use, whether known or unknown, inherent or otherwise, except to the extent caused by gross negligence or willful misconduct.</p>
+                </div>
+
+                <div class="waiver-card">
+                    <h3>Compliance With Therapeutic Protocols</h3>
+                    <p>I agree to:</p>
+                    <ul>
+                        <li>Follow all instructions, time limits, temperature parameters, and safety guidelines provided by the supervising therapist or trainer.</li>
+                        <li>Immediately discontinue use and notify staff if I experience discomfort, pain, dizziness, or adverse symptoms.</li>
+                        <li>Use the therapeutic tub only during authorized sessions and not for recreational purposes.</li>
+                    </ul>
+                </div>
+
+                <div class="waiver-card">
+                    <h3>Release of Liability</h3>
+                    <p>To the fullest extent permitted by California law, I hereby release, waive, and discharge Ocean Pacific Gym, its owners, officers, employees, medical director, therapists, trainers, and agents from any and all claims, liabilities, or demands arising from my participation in therapeutic cold plunge use, except where prohibited by law.</p>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <label class="checkbox-container" id="ackContainer">
+                    <input type="checkbox" id="acknowledgmentCheck">
+                    <span class="custom-checkbox">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </span>
+                    <span class="checkbox-label">I have read and understand this Medical Use Acknowledgment & Waiver and I have had the opportunity to ask questions.</span>
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <label class="checkbox-container" id="consentContainer">
+                    <input type="checkbox" id="consentCheck">
+                    <span class="custom-checkbox">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </span>
+                    <span class="checkbox-label">I voluntarily consent to participate in therapeutic cold plunge therapy under professional supervision.</span>
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <label class="checkbox-container" id="insuranceContainer">
+                    <input type="checkbox" id="insuranceCheck">
+                    <span class="custom-checkbox">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </span>
+                    <span class="checkbox-label">I authorize Ocean Pacific Gym & Wellness to share my information with their insurance provider and consent to be contacted regarding coverage and wellness services.</span>
+                </label>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" id="continueToSign" disabled>Continue to Signature</button>
+                <button type="button" class="btn btn-secondary" id="backToInfo">Back</button>
+            </div>
+        </div>
+
+        <!-- Page 3: Signature -->
+        <div class="page" id="page3">
+            <h1 class="page-title">Sign to Complete</h1>
+            <p class="page-subtitle">Please sign below to complete your waiver.</p>
+
+            <div class="summary-card">
+                <div class="summary-header">
+                    <h3>Participant Summary</h3>
+                </div>
+                <div class="summary-body">
+                    <div class="summary-row">
+                        <span class="summary-label">Name</span>
+                        <span class="summary-value" id="summaryName">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Date of Birth</span>
+                        <span class="summary-value" id="summaryDob">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Email</span>
+                        <span class="summary-value" id="summaryEmail">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Phone</span>
+                        <span class="summary-value" id="summaryPhone">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Date</span>
+                        <span class="summary-value" id="summaryDate">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="signature-container">
+                <label class="signature-label">Participant Signature</label>
+                <div class="signature-pad-wrapper" id="signatureWrapper">
+                    <canvas id="signaturePad"></canvas>
+                    <div class="signature-line"></div>
+                    <div class="signature-hint">Sign here</div>
+                </div>
+                <div class="signature-actions">
+                    <button type="button" class="clear-btn" id="clearSignature">Clear Signature</button>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" id="submitWaiver" disabled>Submit Waiver</button>
+                <button type="button" class="btn btn-secondary" id="backToWaiver">Back</button>
+            </div>
+
+            <div class="powered-by">
+                <span>POWERED BY</span>
+                <svg class="zurich-logo" viewBox="0 0 100 30" fill="none">
+                    <text x="0" y="22" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#003399">ZURICH</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Page 4: Success -->
+        <div class="page" id="page4">
+            <div class="success-container">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <h1 class="success-title">You're All Set!</h1>
+                <p class="success-message">Your waiver has been submitted successfully.<br>Enjoy your therapeutic cold plunge experience.</p>
+                
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <h3>Waiver Confirmation</h3>
+                    </div>
+                    <div class="summary-body">
+                        <div class="summary-row">
+                            <span class="summary-label">Participant</span>
+                            <span class="summary-value" id="confirmName">-</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Date Signed</span>
+                            <span class="summary-value" id="confirmDate">-</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Time</span>
+                            <span class="summary-value" id="confirmTime">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="newWaiver">New Sign In</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2026 Ocean Pacific Gym & Wellness. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Form data
+        let formData = {
+            firstName: '',
+            lastName: '',
+            dob: '',
+            email: '',
+            phone: '',
+            signature: null
+        };
+
+        // Elements
+        const pages = document.querySelectorAll('.page');
+        const progressFill = document.getElementById('progressFill');
+        const progressStep = document.getElementById('progressStep');
+        const progressLabel = document.getElementById('progressLabel');
+
+        // Page navigation
+        function showPage(pageNum) {
+            pages.forEach(p => p.classList.remove('active'));
+            document.getElementById(`page${pageNum}`).classList.add('active');
+            
+            const progressInfo = {
+                1: { width: '33%', step: 'Step 1 of 3', label: 'Participant Information' },
+                2: { width: '66%', step: 'Step 2 of 3', label: 'Waiver & Acknowledgment' },
+                3: { width: '100%', step: 'Step 3 of 3', label: 'Signature' },
+                4: { width: '100%', step: 'Complete', label: 'Waiver Submitted' }
+            };
+            
+            progressFill.style.width = progressInfo[pageNum].width;
+            progressStep.textContent = progressInfo[pageNum].step;
+            progressLabel.textContent = progressInfo[pageNum].label;
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Date display
+        function updateDate() {
+            const now = new Date();
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        updateDate();
+
+        // Phone formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 6) {
+                value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+            } else if (value.length >= 3) {
+                value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+            }
+            e.target.value = value;
+        });
+
+        // Page 1 form submission
+        document.getElementById('participantForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            formData.firstName = document.getElementById('firstName').value;
+            formData.lastName = document.getElementById('lastName').value;
+            formData.dob = document.getElementById('dob').value;
+            formData.email = document.getElementById('email').value;
+            formData.phone = document.getElementById('phone').value;
+            
+            showPage(2);
+        });
+
+        // Checkbox handling
+        const checkboxContainers = ['ackContainer', 'consentContainer', 'insuranceContainer'];
+        const checkboxInputs = ['acknowledgmentCheck', 'consentCheck', 'insuranceCheck'];
+        
+        checkboxContainers.forEach((containerId, index) => {
+            const container = document.getElementById(containerId);
+            const input = document.getElementById(checkboxInputs[index]);
+            
+            container.addEventListener('click', function() {
+                input.checked = !input.checked;
+                container.classList.toggle('checked', input.checked);
+                updateContinueButton();
+            });
+        });
+
+        function updateContinueButton() {
+            const allChecked = checkboxInputs.every(id => document.getElementById(id).checked);
+            document.getElementById('continueToSign').disabled = !allChecked;
+        }
+
+        // Page 2 navigation
+        document.getElementById('continueToSign').addEventListener('click', function() {
+            // Update summary
+            document.getElementById('summaryName').textContent = `${formData.firstName} ${formData.lastName}`;
+            document.getElementById('summaryDob').textContent = new Date(formData.dob).toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric'
+            });
+            document.getElementById('summaryEmail').textContent = formData.email;
+            document.getElementById('summaryPhone').textContent = formData.phone;
+            document.getElementById('summaryDate').textContent = new Date().toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric'
+            });
+            
+            showPage(3);
+            initSignaturePad();
+        });
+
+        document.getElementById('backToInfo').addEventListener('click', () => showPage(1));
+        document.getElementById('backToWaiver').addEventListener('click', () => showPage(2));
+
+        // Signature Pad
+        let canvas, ctx, isDrawing = false, hasSignature = false;
+
+        function initSignaturePad() {
+            canvas = document.getElementById('signaturePad');
+            ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            const wrapper = canvas.parentElement;
+            canvas.width = wrapper.offsetWidth;
+            canvas.height = 150;
+            
+            ctx.strokeStyle = '#1a1a2e';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            // Event listeners
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+            
+            canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+            canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+            canvas.addEventListener('touchend', stopDrawing);
+        }
+
+        function getPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const pos = getPos(e);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            
+            if (!hasSignature) {
+                hasSignature = true;
+                document.getElementById('signatureWrapper').classList.add('has-signature');
+                document.getElementById('submitWaiver').disabled = false;
+            }
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function handleTouchStart(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+
+        function handleTouchMove(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+
+        document.getElementById('clearSignature').addEventListener('click', function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hasSignature = false;
+            document.getElementById('signatureWrapper').classList.remove('has-signature');
+            document.getElementById('submitWaiver').disabled = true;
+        });
+
+        // Submit waiver
+        document.getElementById('submitWaiver').addEventListener('click', function() {
+            formData.signature = canvas.toDataURL();
+            
+            const now = new Date();
+            document.getElementById('confirmName').textContent = `${formData.firstName} ${formData.lastName}`;
+            document.getElementById('confirmDate').textContent = now.toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric'
+            });
+            document.getElementById('confirmTime').textContent = now.toLocaleTimeString('en-US', {
+                hour: 'numeric', minute: '2-digit'
+            });
+            
+            // Log data (would send to server)
+            console.log('Waiver submitted:', {
+                ...formData,
+                timestamp: now.toISOString()
+            });
+            
+            showPage(4);
+        });
+
+        // New waiver
+        document.getElementById('newWaiver').addEventListener('click', function() {
+            // Reset form
+            document.getElementById('participantForm').reset();
+            checkboxInputs.forEach(id => {
+                document.getElementById(id).checked = false;
+            });
+            checkboxContainers.forEach(id => {
+                document.getElementById(id).classList.remove('checked');
+            });
+            document.getElementById('continueToSign').disabled = true;
+            
+            if (ctx) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+            hasSignature = false;
+            document.getElementById('signatureWrapper').classList.remove('has-signature');
+            document.getElementById('submitWaiver').disabled = true;
+            
+            formData = {
+                firstName: '',
+                lastName: '',
+                dob: '',
+                email: '',
+                phone: '',
+                signature: null
+            };
+            
+            showPage(1);
+        });
+    </script>
+</body>
+</html>
 
