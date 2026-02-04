@@ -150,6 +150,7 @@
             border-bottom: 1px solid rgba(126, 200, 200, 0.3);
         }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-row.three-col { grid-template-columns: 1.4fr 0.9fr 0.9fr; }
         .form-group { margin-bottom: 16px; }
         .form-label {
             display: block;
@@ -255,12 +256,81 @@
         .custom-checkbox svg { width: 14px; height: 14px; fill: white; opacity: 0; transform: scale(0); transition: all 0.2s ease; }
         .checkbox-container.checked .custom-checkbox svg { opacity: 1; transform: scale(1); }
         .checkbox-label { font-size: 14px; color: var(--ocean-deep); line-height: 1.6; }
+        .choice-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            padding: 16px;
+            border-radius: 12px;
+            background: var(--white);
+            box-shadow: 0 4px 16px rgba(10, 37, 64, 0.06);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .choice-container:hover { border-color: rgba(126, 200, 200, 0.5); }
+        .choice-container.checked { border-color: var(--seafoam); background: var(--seafoam-light); }
+        .choice-container input { display: none; }
+        .custom-choice {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--ocean-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+        .choice-container.checked .custom-choice { border-color: var(--ocean-mid); }
+        .custom-choice::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--ocean-mid);
+            transform: scale(0);
+            transition: transform 0.2s ease;
+        }
+        .choice-container.checked .custom-choice::after { transform: scale(1); }
+        .choice-label { font-size: 14px; color: var(--ocean-deep); line-height: 1.5; }
         .insurance-section {
             background: var(--white);
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 4px 20px rgba(10, 37, 64, 0.06);
+        }
+        .insurance-grid { display: grid; gap: 16px; }
+        .insurance-benefits { list-style: none; padding: 0; margin: 0; }
+        .insurance-benefits li {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(126, 200, 200, 0.2);
+            font-size: 14px;
+            color: var(--ocean-mid);
+        }
+        .insurance-benefits li:last-child { border-bottom: none; }
+        .benefit-title { font-weight: 600; color: var(--ocean-deep); }
+        .benefit-value { font-weight: 600; color: var(--ocean-deep); }
+        .policy-term {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--ocean-light);
+            margin-top: 12px;
+        }
+        .highlight-card {
+            background: var(--seafoam-light);
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 13px;
+            color: var(--ocean-mid);
+            line-height: 1.5;
         }
         .insurance-header {
             display: flex;
@@ -417,6 +487,7 @@
             letter-spacing: 1px;
         }
         .powered-by .zurich { font-weight: 700; color: #003399; font-size: 13px; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -425,8 +496,8 @@
     </header>
     <div class="wave-divider"></div>
     <div class="progress-container">
-        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 33%"></div></div>
-        <div class="progress-text"><span id="progressStep">Step 1 of 3</span><span id="progressLabel">Participant Information</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 20%"></div></div>
+        <div class="progress-text"><span id="progressStep">Step 1 of 5</span><span id="progressLabel">Participant Information</span></div>
     </div>
     <div class="main-container">
         <!-- Page 1 -->
@@ -470,6 +541,80 @@
                         <label class="form-label" for="phone">Phone Number</label>
                         <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" required>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label" for="street">Street Address</label>
+                        <input type="text" class="form-input" id="street" placeholder="Street address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="apt">Apartment, unit, suite, etc. (optional)</label>
+                        <input type="text" class="form-input" id="apt" placeholder="Apt, suite, unit">
+                    </div>
+                    <div class="form-row three-col">
+                        <div class="form-group">
+                            <label class="form-label" for="city">City</label>
+                            <input type="text" class="form-input" id="city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="state">State</label>
+                            <select class="form-input" id="state" required>
+                                <option value="" disabled selected>Select</option>
+                                <option value="AL">AL</option>
+                                <option value="AK">AK</option>
+                                <option value="AZ">AZ</option>
+                                <option value="AR">AR</option>
+                                <option value="CA">CA</option>
+                                <option value="CO">CO</option>
+                                <option value="CT">CT</option>
+                                <option value="DE">DE</option>
+                                <option value="FL">FL</option>
+                                <option value="GA">GA</option>
+                                <option value="HI">HI</option>
+                                <option value="ID">ID</option>
+                                <option value="IL">IL</option>
+                                <option value="IN">IN</option>
+                                <option value="IA">IA</option>
+                                <option value="KS">KS</option>
+                                <option value="KY">KY</option>
+                                <option value="LA">LA</option>
+                                <option value="ME">ME</option>
+                                <option value="MD">MD</option>
+                                <option value="MA">MA</option>
+                                <option value="MI">MI</option>
+                                <option value="MN">MN</option>
+                                <option value="MS">MS</option>
+                                <option value="MO">MO</option>
+                                <option value="MT">MT</option>
+                                <option value="NE">NE</option>
+                                <option value="NV">NV</option>
+                                <option value="NH">NH</option>
+                                <option value="NJ">NJ</option>
+                                <option value="NM">NM</option>
+                                <option value="NY">NY</option>
+                                <option value="NC">NC</option>
+                                <option value="ND">ND</option>
+                                <option value="OH">OH</option>
+                                <option value="OK">OK</option>
+                                <option value="OR">OR</option>
+                                <option value="PA">PA</option>
+                                <option value="RI">RI</option>
+                                <option value="SC">SC</option>
+                                <option value="SD">SD</option>
+                                <option value="TN">TN</option>
+                                <option value="TX">TX</option>
+                                <option value="UT">UT</option>
+                                <option value="VT">VT</option>
+                                <option value="VA">VA</option>
+                                <option value="WA">WA</option>
+                                <option value="WV">WV</option>
+                                <option value="WI">WI</option>
+                                <option value="WY">WY</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="zip">Zip Code</label>
+                            <input type="text" class="form-input" id="zip" placeholder="Zip" required>
+                        </div>
+                    </div>
                 </div>
                 <div class="button-group"><button type="submit" class="btn btn-primary">Continue to Waiver</button></div>
             </form>
@@ -477,7 +622,18 @@
         <!-- Page 2 -->
         <div class="page" id="page2">
             <h1 class="page-title">Medical Use Acknowledgment</h1>
-            <p class="page-subtitle">Please review and accept the following terms</p>
+            <p class="page-subtitle">Review the waiver and sign to continue</p>
+            <div class="summary-card">
+                <div class="summary-header"><h3>Participant Summary</h3></div>
+                <div class="summary-body">
+                    <div class="summary-row"><span class="summary-label">Name</span><span class="summary-value" id="summaryName">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Date of Birth</span><span class="summary-value" id="summaryDob">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Email</span><span class="summary-value" id="summaryEmail">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Phone</span><span class="summary-value" id="summaryPhone">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Address</span><span class="summary-value" id="summaryAddress">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Date</span><span class="summary-value" id="summaryDate">-</span></div>
+                </div>
+            </div>
             <div class="waiver-scroll">
                 <div class="waiver-card">
                     <h3>Medical Use Acknowledgment</h3>
@@ -549,39 +705,6 @@
                     <span class="checkbox-label">I voluntarily consent to participate in therapeutic cold plunge therapy under professional supervision.</span>
                 </label>
             </div>
-            <div class="insurance-section">
-                <div class="insurance-header">
-                    <span class="insurance-title">Official Provider of Ocean Pacific Gym Coverage & Insurance Partner</span>
-                    <span class="zurich-badge">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003399"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Z</text></svg>
-                        ZURICH
-                    </span>
-                </div>
-                <label class="checkbox-container" id="insuranceContainer">
-                    <input type="checkbox" id="insuranceCheck">
-                    <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-                    <span class="checkbox-label">I agree to receive marketing calls, emails, and text messages from Zurich American Insurance Company, its affiliates, or authorized third-party partners, including via automated dialing systems or prerecorded messages, at the phone number(s) provided. I understand my consent is not required as a condition of purchasing any goods or services, and I may opt-out at any time.</span>
-                </label>
-            </div>
-            <div class="button-group">
-                <button type="button" class="btn btn-primary" id="continueToSign" disabled>Continue to Signature</button>
-                <button type="button" class="btn btn-secondary" id="backToInfo">Back</button>
-            </div>
-        </div>
-        <!-- Page 3 -->
-        <div class="page" id="page3">
-            <h1 class="page-title">Sign to Complete</h1>
-            <p class="page-subtitle">Please sign below to finalize your waiver</p>
-            <div class="summary-card">
-                <div class="summary-header"><h3>Participant Summary</h3></div>
-                <div class="summary-body">
-                    <div class="summary-row"><span class="summary-label">Name</span><span class="summary-value" id="summaryName">-</span></div>
-                    <div class="summary-row"><span class="summary-label">Date of Birth</span><span class="summary-value" id="summaryDob">-</span></div>
-                    <div class="summary-row"><span class="summary-label">Email</span><span class="summary-value" id="summaryEmail">-</span></div>
-                    <div class="summary-row"><span class="summary-label">Phone</span><span class="summary-value" id="summaryPhone">-</span></div>
-                    <div class="summary-row"><span class="summary-label">Date</span><span class="summary-value" id="summaryDate">-</span></div>
-                </div>
-            </div>
             <div class="signature-container">
                 <label class="signature-label">Participant Signature</label>
                 <div class="signature-pad-wrapper" id="signatureWrapper">
@@ -592,23 +715,170 @@
                 <div class="signature-actions"><button type="button" class="clear-btn" id="clearSignature">Clear Signature</button></div>
             </div>
             <div class="button-group">
-                <button type="button" class="btn btn-primary" id="submitWaiver" disabled>Submit Waiver</button>
+                <button type="button" class="btn btn-primary" id="continueToInsurance" disabled>Continue to Coverage</button>
+                <button type="button" class="btn btn-secondary" id="backToInfo">Back</button>
+            </div>
+        </div>
+        <!-- Page 3 -->
+        <div class="page" id="page3">
+            <h1 class="page-title">Activate Accident Coverage</h1>
+            <p class="page-subtitle">Optional Zurich coverage for your cold plunge session</p>
+            <div class="insurance-section">
+                <div class="insurance-header">
+                    <span class="insurance-title">Official Provider of Ocean Pacific Gym Coverage</span>
+                    <span class="zurich-badge">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003399"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Z</text></svg>
+                        ZURICH
+                    </span>
+                </div>
+                <div class="insurance-grid">
+                    <ul class="insurance-benefits">
+                        <li><span class="benefit-title">Accidental Death & Dismemberment</span><span class="benefit-value">$25,000</span></li>
+                        <li><span class="benefit-title">Accident Medical Expense</span><span class="benefit-value">$25,000</span></li>
+                        <li><span class="benefit-title">Deductible</span><span class="benefit-value">$0</span></li>
+                    </ul>
+                    <div class="policy-term">
+                        <span>Coverage start: <strong id="coverageStart">-</strong></span>
+                        <span>Coverage end: <strong id="coverageEnd">-</strong></span>
+                    </div>
+                    <div class="highlight-card">
+                        Activate complimentary accident coverage for today’s visit. You can decline and continue with the waiver only.
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="section-title">Would you like to activate coverage?</div>
+                <div class="checkbox-group">
+                    <label class="choice-container" id="coverageYesContainer">
+                        <input type="radio" name="coverageChoice" id="coverageYes" value="yes">
+                        <span class="custom-choice"></span>
+                        <span class="choice-label">Yes, activate Zurich accident coverage.</span>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label class="choice-container" id="coverageNoContainer">
+                        <input type="radio" name="coverageChoice" id="coverageNo" value="no">
+                        <span class="custom-choice"></span>
+                        <span class="choice-label">No, decline coverage and continue with waiver only.</span>
+                    </label>
+                </div>
+            </div>
+            <div id="coverageDetails" class="hidden">
+                <div class="form-section">
+                    <div class="section-title">Residency Attestation</div>
+                    <div class="checkbox-group">
+                        <label class="choice-container" id="residencyYesContainer">
+                            <input type="radio" name="residency" id="residencyYes" value="yes">
+                            <span class="custom-choice"></span>
+                            <span class="choice-label">Yes, I am a U.S. citizen, permanent resident, or have a valid U.S. work visa.</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="choice-container" id="residencyNoContainer">
+                            <input type="radio" name="residency" id="residencyNo" value="no">
+                            <span class="custom-choice"></span>
+                            <span class="choice-label">No, I do not meet the residency or work visa requirement.</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="section-title">Replacement Question</div>
+                    <div class="checkbox-group">
+                        <label class="choice-container" id="replacementNoContainer">
+                            <input type="radio" name="replacement" id="replacementNo" value="no">
+                            <span class="custom-choice"></span>
+                            <span class="choice-label">No, this coverage does not replace other accident insurance.</span>
+                        </label>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="choice-container" id="replacementYesContainer">
+                            <input type="radio" name="replacement" id="replacementYes" value="yes">
+                            <span class="custom-choice"></span>
+                            <span class="choice-label">Yes, this coverage is intended to replace existing accident insurance.</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="insurance-section">
+                    <div class="insurance-header">
+                        <span class="insurance-title">Marketing Consent (Optional)</span>
+                    </div>
+                    <label class="checkbox-container" id="marketingContainer">
+                        <input type="checkbox" id="marketingCheck">
+                        <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                        <span class="checkbox-label">I agree to receive marketing calls, emails, and text messages from Zurich American Insurance Company, its affiliates, or authorized partners. Consent is not required to receive coverage and may be withdrawn at any time.</span>
+                    </label>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" id="continueToReview" disabled>Continue</button>
                 <button type="button" class="btn btn-secondary" id="backToWaiver">Back</button>
             </div>
             <div class="powered-by"><span>Powered by</span><span class="zurich">ZURICH</span></div>
         </div>
         <!-- Page 4 -->
         <div class="page" id="page4">
+            <h1 class="page-title">Review & Activate</h1>
+            <p class="page-subtitle">Confirm the coverage details and acknowledge the terms</p>
+            <div class="insurance-section">
+                <div class="insurance-header">
+                    <span class="insurance-title">Your Coverage Details</span>
+                    <span class="zurich-badge">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003399"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Z</text></svg>
+                        ZURICH
+                    </span>
+                </div>
+                <ul class="insurance-benefits">
+                    <li><span class="benefit-title">Accidental Death & Dismemberment</span><span class="benefit-value">$25,000</span></li>
+                    <li><span class="benefit-title">Accident Medical Expense</span><span class="benefit-value">$25,000</span></li>
+                    <li><span class="benefit-title">Deductible</span><span class="benefit-value">$0</span></li>
+                </ul>
+                <div class="policy-term">
+                    <span>Coverage start: <strong id="coverageStartReview">-</strong></span>
+                    <span>Coverage end: <strong id="coverageEndReview">-</strong></span>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="section-title">Terms & Acknowledgements</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-container" id="agreementContainer">
+                        <input type="checkbox" id="agreementCheck">
+                        <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                        <span class="checkbox-label">I have read the Agreement & Acknowledgement, reviewed the application responses, and received the Outline of Coverage.</span>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-container" id="electronicContainer">
+                        <input type="checkbox" id="electronicCheck">
+                        <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                        <span class="checkbox-label">I consent to electronic delivery of policy documents.</span>
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-container" id="reviewContainer">
+                        <input type="checkbox" id="reviewCheck">
+                        <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                        <span class="checkbox-label">I have reviewed my completed application and confirm it is accurate.</span>
+                    </label>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" id="activatePolicy" disabled>Activate Policy</button>
+                <button type="button" class="btn btn-secondary" id="backToCoverage">Back</button>
+            </div>
+        </div>
+        <!-- Page 5 -->
+        <div class="page" id="page5">
             <div class="success-container">
                 <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <h1 class="success-title">You're All Set!</h1>
-                <p class="success-message">Your waiver has been submitted successfully.<br>Enjoy your therapeutic cold plunge.</p>
+                <p class="success-message" id="successMessage">Your waiver has been submitted successfully.</p>
                 <div class="summary-card">
-                    <div class="summary-header"><h3>Waiver Confirmation</h3></div>
+                    <div class="summary-header"><h3>Confirmation</h3></div>
                     <div class="summary-body">
                         <div class="summary-row"><span class="summary-label">Participant</span><span class="summary-value" id="confirmName">-</span></div>
                         <div class="summary-row"><span class="summary-label">Date Signed</span><span class="summary-value" id="confirmDate">-</span></div>
                         <div class="summary-row"><span class="summary-label">Time</span><span class="summary-value" id="confirmTime">-</span></div>
+                        <div class="summary-row"><span class="summary-label">Coverage Status</span><span class="summary-value" id="confirmCoverage">-</span></div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" id="newWaiver">New Sign In</button>
@@ -617,7 +887,23 @@
         <footer class="footer"><p>© 2026 Ocean Pacific Gym & Wellness. All Rights Reserved.</p></footer>
     </div>
     <script>
-        let formData = { firstName: '', lastName: '', dob: '', email: '', phone: '', signature: null };
+        let formData = {
+            firstName: '',
+            lastName: '',
+            dob: '',
+            email: '',
+            phone: '',
+            street: '',
+            apt: '',
+            city: '',
+            state: '',
+            zip: '',
+            signature: null,
+            insuranceAccepted: false,
+            residency: null,
+            replacement: null,
+            marketingConsent: false
+        };
         const pages = document.querySelectorAll('.page');
         const progressFill = document.getElementById('progressFill');
         const progressStep = document.getElementById('progressStep');
@@ -626,7 +912,13 @@
         function showPage(pageNum) {
             pages.forEach(p => p.classList.remove('active'));
             document.getElementById(`page${pageNum}`).classList.add('active');
-            const info = { 1: { w: '33%', s: 'Step 1 of 3', l: 'Participant Information' }, 2: { w: '66%', s: 'Step 2 of 3', l: 'Waiver & Acknowledgment' }, 3: { w: '100%', s: 'Step 3 of 3', l: 'Signature' }, 4: { w: '100%', s: 'Complete', l: 'Waiver Submitted' } };
+            const info = {
+                1: { w: '20%', s: 'Step 1 of 5', l: 'Participant Information' },
+                2: { w: '40%', s: 'Step 2 of 5', l: 'Waiver & Signature' },
+                3: { w: '60%', s: 'Step 3 of 5', l: 'Coverage Offer' },
+                4: { w: '80%', s: 'Step 4 of 5', l: 'Review & Activate' },
+                5: { w: '100%', s: 'Step 5 of 5', l: 'Complete' }
+            };
             progressFill.style.width = info[pageNum].w;
             progressStep.textContent = info[pageNum].s;
             progressLabel.textContent = info[pageNum].l;
@@ -652,29 +944,41 @@
             formData.dob = document.getElementById('dob').value;
             formData.email = document.getElementById('email').value;
             formData.phone = document.getElementById('phone').value;
-            showPage(2);
-        });
-
-        const checkboxContainers = ['ackContainer', 'consentContainer', 'insuranceContainer'];
-        const checkboxInputs = ['acknowledgmentCheck', 'consentCheck', 'insuranceCheck'];
-        checkboxContainers.forEach((cid, i) => {
-            const container = document.getElementById(cid);
-            const input = document.getElementById(checkboxInputs[i]);
-            container.addEventListener('click', function() {
-                input.checked = !input.checked;
-                container.classList.toggle('checked', input.checked);
-                document.getElementById('continueToSign').disabled = !checkboxInputs.every(id => document.getElementById(id).checked);
-            });
-        });
-
-        document.getElementById('continueToSign').addEventListener('click', function() {
+            formData.street = document.getElementById('street').value;
+            formData.apt = document.getElementById('apt').value;
+            formData.city = document.getElementById('city').value;
+            formData.state = document.getElementById('state').value;
+            formData.zip = document.getElementById('zip').value;
             document.getElementById('summaryName').textContent = `${formData.firstName} ${formData.lastName}`;
             document.getElementById('summaryDob').textContent = new Date(formData.dob).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
             document.getElementById('summaryEmail').textContent = formData.email;
             document.getElementById('summaryPhone').textContent = formData.phone;
+            const addressParts = [`${formData.street}${formData.apt ? `, ${formData.apt}` : ''}`, `${formData.city}, ${formData.state} ${formData.zip}`];
+            document.getElementById('summaryAddress').textContent = addressParts.join(' • ');
             document.getElementById('summaryDate').textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-            showPage(3);
+            showPage(2);
             initSignaturePad();
+        });
+
+        const waiverCheckboxContainers = ['ackContainer', 'consentContainer'];
+        const waiverCheckboxInputs = ['acknowledgmentCheck', 'consentCheck'];
+        waiverCheckboxContainers.forEach((cid, i) => {
+            const container = document.getElementById(cid);
+            const input = document.getElementById(waiverCheckboxInputs[i]);
+            container.addEventListener('click', function() {
+                input.checked = !input.checked;
+                container.classList.toggle('checked', input.checked);
+                updateWaiverContinueState();
+            });
+        });
+
+        function updateWaiverContinueState() {
+            const checksComplete = waiverCheckboxInputs.every(id => document.getElementById(id).checked);
+            document.getElementById('continueToInsurance').disabled = !(checksComplete && hasSignature);
+        }
+
+        document.getElementById('continueToInsurance').addEventListener('click', function() {
+            showPage(3);
         });
 
         document.getElementById('backToInfo').addEventListener('click', () => showPage(1));
@@ -709,7 +1013,7 @@
             if (!hasSignature) {
                 hasSignature = true;
                 document.getElementById('signatureWrapper').classList.add('has-signature');
-                document.getElementById('submitWaiver').disabled = false;
+                updateWaiverContinueState();
             }
         }
         function stopDrawing() { isDrawing = false; }
@@ -719,31 +1023,139 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             hasSignature = false;
             document.getElementById('signatureWrapper').classList.remove('has-signature');
-            document.getElementById('submitWaiver').disabled = true;
+            updateWaiverContinueState();
         });
 
-        document.getElementById('submitWaiver').addEventListener('click', function() {
-            formData.signature = canvas.toDataURL();
+        ['coverageYesContainer', 'coverageNoContainer', 'residencyYesContainer', 'residencyNoContainer', 'replacementYesContainer', 'replacementNoContainer']
+            .forEach(containerId => {
+                const input = document.querySelector(`#${containerId} input`);
+                if (input) {
+                    document.getElementById(containerId).addEventListener('click', () => {
+                        input.checked = true;
+                        document.querySelectorAll(`input[name="${input.name}"]`).forEach(radio => {
+                            const wrapper = radio.closest('.choice-container');
+                            if (wrapper) wrapper.classList.toggle('checked', radio.checked);
+                        });
+                        updateCoverageState();
+                    });
+                }
+            });
+
+        document.getElementById('marketingContainer').addEventListener('click', function() {
+            const input = document.getElementById('marketingCheck');
+            input.checked = !input.checked;
+            this.classList.toggle('checked', input.checked);
+        });
+
+        function updateCoverageState() {
+            const coverageYes = document.getElementById('coverageYes').checked;
+            const coverageNo = document.getElementById('coverageNo').checked;
+            document.getElementById('coverageDetails').classList.toggle('hidden', !coverageYes);
+            const residencySelected = document.querySelector('input[name="residency"]:checked');
+            const replacementSelected = document.querySelector('input[name="replacement"]:checked');
+            if (coverageYes) {
+                document.getElementById('continueToReview').disabled = !(residencySelected && replacementSelected);
+            } else {
+                document.getElementById('continueToReview').disabled = !coverageNo;
+            }
+        }
+
+        document.getElementById('continueToReview').addEventListener('click', function() {
+            formData.insuranceAccepted = document.getElementById('coverageYes').checked;
+            formData.residency = document.querySelector('input[name="residency"]:checked')?.value || null;
+            formData.replacement = document.querySelector('input[name="replacement"]:checked')?.value || null;
+            formData.marketingConsent = document.getElementById('marketingCheck').checked;
+            if (formData.insuranceAccepted) {
+                showPage(4);
+            } else {
+                finalizeSuccess(false);
+            }
+        });
+
+        document.getElementById('backToCoverage').addEventListener('click', () => showPage(3));
+
+        const legalContainers = ['agreementContainer', 'electronicContainer', 'reviewContainer'];
+        const legalInputs = ['agreementCheck', 'electronicCheck', 'reviewCheck'];
+        legalContainers.forEach((cid, i) => {
+            const container = document.getElementById(cid);
+            const input = document.getElementById(legalInputs[i]);
+            container.addEventListener('click', function() {
+                input.checked = !input.checked;
+                container.classList.toggle('checked', input.checked);
+                document.getElementById('activatePolicy').disabled = !legalInputs.every(id => document.getElementById(id).checked);
+            });
+        });
+
+        document.getElementById('activatePolicy').addEventListener('click', function() {
+            finalizeSuccess(true);
+        });
+
+        function finalizeSuccess(coverageActivated) {
+            formData.signature = canvas ? canvas.toDataURL() : null;
             const now = new Date();
             document.getElementById('confirmName').textContent = `${formData.firstName} ${formData.lastName}`;
             document.getElementById('confirmDate').textContent = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
             document.getElementById('confirmTime').textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-            console.log('Waiver submitted:', { ...formData, timestamp: now.toISOString() });
-            showPage(4);
-        });
+            document.getElementById('confirmCoverage').textContent = coverageActivated ? 'Activated' : 'Declined';
+            document.getElementById('successMessage').innerHTML = coverageActivated
+                ? 'Your waiver has been submitted and your Zurich accident coverage is active.<br>Enjoy your therapeutic cold plunge.'
+                : 'Your waiver has been submitted successfully.<br>You chose not to activate accident coverage.';
+            console.log('Waiver submitted:', { ...formData, coverageActivated, timestamp: now.toISOString() });
+            showPage(5);
+        }
 
         document.getElementById('newWaiver').addEventListener('click', function() {
             document.getElementById('participantForm').reset();
-            checkboxInputs.forEach(id => { document.getElementById(id).checked = false; });
-            checkboxContainers.forEach(id => { document.getElementById(id).classList.remove('checked'); });
-            document.getElementById('continueToSign').disabled = true;
+            waiverCheckboxInputs.forEach(id => { document.getElementById(id).checked = false; });
+            waiverCheckboxContainers.forEach(id => { document.getElementById(id).classList.remove('checked'); });
+            legalInputs.forEach(id => { document.getElementById(id).checked = false; });
+            legalContainers.forEach(id => { document.getElementById(id).classList.remove('checked'); });
+            document.querySelectorAll('input[name="coverageChoice"]').forEach(radio => { radio.checked = false; });
+            document.querySelectorAll('input[name="residency"]').forEach(radio => { radio.checked = false; });
+            document.querySelectorAll('input[name="replacement"]').forEach(radio => { radio.checked = false; });
+            document.getElementById('coverageYesContainer').classList.remove('checked');
+            document.getElementById('coverageNoContainer').classList.remove('checked');
+            document.getElementById('residencyYesContainer').classList.remove('checked');
+            document.getElementById('residencyNoContainer').classList.remove('checked');
+            document.getElementById('replacementYesContainer').classList.remove('checked');
+            document.getElementById('replacementNoContainer').classList.remove('checked');
+            document.getElementById('marketingCheck').checked = false;
+            document.getElementById('marketingContainer').classList.remove('checked');
+            document.getElementById('continueToInsurance').disabled = true;
+            document.getElementById('continueToReview').disabled = true;
+            document.getElementById('activatePolicy').disabled = true;
             if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
             hasSignature = false;
             if (document.getElementById('signatureWrapper')) document.getElementById('signatureWrapper').classList.remove('has-signature');
-            document.getElementById('submitWaiver').disabled = true;
-            formData = { firstName: '', lastName: '', dob: '', email: '', phone: '', signature: null };
+            formData = {
+                firstName: '',
+                lastName: '',
+                dob: '',
+                email: '',
+                phone: '',
+                street: '',
+                apt: '',
+                city: '',
+                state: '',
+                zip: '',
+                signature: null,
+                insuranceAccepted: false,
+                residency: null,
+                replacement: null,
+                marketingConsent: false
+            };
             showPage(1);
         });
+
+        const coverageStart = new Date();
+        const coverageEnd = new Date();
+        coverageEnd.setDate(coverageStart.getDate() + 1);
+        const coverageStartText = coverageStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const coverageEndText = coverageEnd.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        document.getElementById('coverageStart').textContent = coverageStartText;
+        document.getElementById('coverageEnd').textContent = coverageEndText;
+        document.getElementById('coverageStartReview').textContent = coverageStartText;
+        document.getElementById('coverageEndReview').textContent = coverageEndText;
     </script>
 </body>
 </html>
