@@ -3,682 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Therapeutic Cold Plunge Waiver | Ocean Pacific Gym & Wellness</title>
+    <title>Cold Plunge Waiver | Ocean Pacific Gym & Wellness</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0066cc;
-            --primary-dark: #004999;
-            --text-dark: #1a1a2e;
-            --text-medium: #4a4a68;
-            --text-light: #6b7280;
-            --border: #e5e7eb;
-            --border-focus: #0066cc;
-            --bg-light: #f9fafb;
-            --bg-white: #ffffff;
-            --success: #10b981;
-            --error: #ef4444;
-            --warning: #f59e0b;
+            --ocean-deep: #0a2540;
+            --ocean-mid: #1a4a6e;
+            --ocean-light: #3d7a9e;
+            --seafoam: #7ec8c8;
+            --seafoam-light: rgba(126, 200, 200, 0.15);
+            --sand: #f5f0e8;
+            --sand-light: #faf8f5;
+            --white: #ffffff;
+            --warning-bg: #fef3c7;
+            --warning-border: #fcd34d;
+            --warning-text: #92400e;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(180deg, var(--sand-light) 0%, var(--sand) 100%);
+            color: var(--ocean-deep);
             min-height: 100vh;
-            min-height: 100dvh;
         }
-
-        /* Header */
         .header {
-            background: var(--bg-white);
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--white);
+            padding: 20px 24px;
+            text-align: center;
+            box-shadow: 0 2px 20px rgba(10, 37, 64, 0.06);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-
-        .logo {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-dark);
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ocean-deep);
         }
-
-        .logo span {
-            color: var(--primary);
+        .logo-text span {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 5px;
+            margin-top: 4px;
+            color: var(--ocean-light);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
         }
-
-        .need-help {
-            font-size: 13px;
-            color: var(--text-light);
+        .wave-divider {
+            height: 30px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z' fill='%237ec8c8' opacity='0.3'/%3E%3Cpath d='M0,80 C200,140 400,20 600,80 C800,140 1000,20 1200,80 L1200,120 L0,120 Z' fill='%233d7a9e' opacity='0.2'/%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
         }
-
-        /* Progress Bar */
         .progress-container {
-            background: var(--bg-white);
+            background: var(--white);
             padding: 16px 24px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(126, 200, 200, 0.3);
         }
-
         .progress-bar {
             height: 4px;
-            background: var(--border);
+            background: rgba(126, 200, 200, 0.3);
             border-radius: 2px;
             overflow: hidden;
         }
-
         .progress-fill {
             height: 100%;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--ocean-light), var(--seafoam));
             border-radius: 2px;
-            transition: width 0.4s ease;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .progress-text {
             display: flex;
             justify-content: space-between;
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 12px;
-            color: var(--text-light);
+            color: var(--ocean-light);
+            font-weight: 500;
         }
-
-        /* Main Container */
         .main-container {
             max-width: 600px;
             margin: 0 auto;
-            padding: 24px;
+            padding: 28px 24px;
         }
-
-        /* Page Styles */
-        .page {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .page.active {
-            display: block;
-        }
-
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .page-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .page-subtitle {
-            font-size: 15px;
-            color: var(--text-light);
-            margin-bottom: 28px;
-        }
-
-        /* Form Styles */
-        .form-section {
-            margin-bottom: 28px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-        }
-
-        .form-input, .form-select {
-            width: 100%;
-            padding: 12px 14px;
-            font-size: 16px;
-            font-family: inherit;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-white);
-            color: var(--text-dark);
-            transition: all 0.2s ease;
-        }
-
-        .form-input:focus, .form-select:focus {
-            outline: none;
-            border-color: var(--border-focus);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: #9ca3af;
-        }
-
-        /* Waiver Content */
-        .waiver-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .waiver-card h3 {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-        }
-
-        .waiver-card p {
-            font-size: 14px;
-            color: var(--text-medium);
-            margin-bottom: 12px;
-        }
-
-        .waiver-card ul {
-            margin: 12px 0;
-            padding-left: 20px;
-        }
-
-        .waiver-card li {
-            font-size: 13px;
-            color: var(--text-medium);
-            margin-bottom: 6px;
-        }
-
-        .risk-list {
-            background: #fef3c7;
-            border: 1px solid #fcd34d;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-        }
-
-        .risk-list h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #92400e;
-            margin-bottom: 10px;
-        }
-
-        .risk-list ul {
-            columns: 1;
-            padding-left: 18px;
-        }
-
-        .risk-list li {
-            font-size: 12px;
-            color: #92400e;
-            margin-bottom: 4px;
-        }
-
-        @media (min-width: 500px) {
-            .risk-list ul {
-                columns: 2;
-            }
-        }
-
-        /* Checkbox Styles */
-        .checkbox-group {
-            margin-bottom: 16px;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            cursor: pointer;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-white);
-            transition: all 0.2s ease;
-        }
-
-        .checkbox-container:hover {
-            border-color: var(--primary);
-        }
-
-        .checkbox-container.checked {
-            border-color: var(--primary);
-            background: rgba(0, 102, 204, 0.05);
-        }
-
-        .checkbox-container input {
-            display: none;
-        }
-
-        .custom-checkbox {
-            width: 22px;
-            height: 22px;
-            min-width: 22px;
-            border: 2px solid var(--border);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            margin-top: 2px;
-        }
-
-        .checkbox-container.checked .custom-checkbox {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .custom-checkbox svg {
-            width: 14px;
-            height: 14px;
-            fill: white;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.15s ease;
-        }
-
-        .checkbox-container.checked .custom-checkbox svg {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .checkbox-label {
-            font-size: 14px;
-            color: var(--text-dark);
-            line-height: 1.5;
-        }
-
-        /* Signature Pad */
-        .signature-container {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .signature-label {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .signature-pad-wrapper {
-            position: relative;
-            border: 2px dashed var(--border);
-            border-radius: 8px;
-            background: #fafafa;
-            overflow: hidden;
-        }
-
-        .signature-pad-wrapper.has-signature {
-            border-style: solid;
-            border-color: var(--primary);
-        }
-
-        #signaturePad {
-            width: 100%;
-            height: 150px;
-            display: block;
-            touch-action: none;
-        }
-
-        .signature-line {
-            position: absolute;
-            bottom: 40px;
-            left: 20px;
-            right: 20px;
-            height: 1px;
-            background: var(--border);
-            pointer-events: none;
-        }
-
-        .signature-hint {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 12px;
-            color: var(--text-light);
-            pointer-events: none;
-        }
-
-        .signature-actions {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-        }
-
-        .clear-btn {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 6px 12px;
-        }
-
-        .clear-btn:hover {
-            text-decoration: underline;
-        }
-
-        /* Buttons */
-        .btn {
-            width: 100%;
-            padding: 14px 24px;
-            font-size: 16px;
-            font-family: inherit;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-
-        .btn-primary:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-        }
-
-        .btn-secondary {
-            background: var(--bg-white);
-            color: var(--text-dark);
-            border: 1px solid var(--border);
-            margin-top: 12px;
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-light);
-        }
-
-        .button-group {
-            margin-top: 24px;
-        }
-
-        /* Summary Card */
-        .summary-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .summary-header {
-            background: var(--bg-light);
-            padding: 14px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .summary-header h3 {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .summary-body {
-            padding: 16px 20px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--bg-light);
-        }
-
-        .summary-row:last-child {
-            border-bottom: none;
-        }
-
-        .summary-label {
-            font-size: 13px;
-            color: var(--text-light);
-        }
-
-        .summary-value {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-dark);
-            text-align: right;
-        }
-
-        /* Success Page */
-        .success-container {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .success-icon {
+        .icon-container { display: flex; justify-content: center; margin-bottom: 24px; }
+        .cold-plunge-icon {
             width: 80px;
             height: 80px;
-            background: var(--success);
+            background: linear-gradient(135deg, var(--ocean-light) 0%, var(--seafoam) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
+            box-shadow: 0 8px 32px rgba(61, 122, 158, 0.3);
+            animation: float 3s ease-in-out infinite;
         }
-
-        .success-icon svg {
-            width: 40px;
-            height: 40px;
-            fill: white;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
-
-        .success-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
+        .cold-plunge-icon svg { width: 40px; height: 40px; fill: var(--white); }
+        .page-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--ocean-deep);
+            margin-bottom: 8px;
+            text-align: center;
         }
-
-        .success-message {
-            font-size: 16px;
-            color: var(--text-light);
-            margin-bottom: 32px;
+        .page-subtitle {
+            font-size: 15px;
+            color: var(--ocean-light);
+            text-align: center;
+            margin-bottom: 24px;
+            font-weight: 300;
         }
-
-        /* Location Info */
-        .location-info {
-            background: var(--bg-light);
-            border-radius: 8px;
-            padding: 16px;
+        .location-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 18px;
             margin-bottom: 24px;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.06);
         }
-
-        .location-info p {
-            font-size: 13px;
-            color: var(--text-medium);
-            margin: 2px 0;
+        .location-card p { font-size: 13px; color: var(--ocean-mid); margin: 3px 0; }
+        .location-card strong { color: var(--ocean-deep); }
+        .date-display { text-align: center; margin-bottom: 24px; font-size: 13px; color: var(--ocean-light); }
+        .form-section { margin-bottom: 24px; }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--ocean-deep);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(126, 200, 200, 0.3);
         }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 20px;
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-group { margin-bottom: 16px; }
+        .form-label {
+            display: block;
             font-size: 12px;
-            color: var(--text-light);
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--ocean-mid);
+            margin-bottom: 8px;
         }
-
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-family: 'Outfit', sans-serif;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: var(--white);
+            color: var(--ocean-deep);
+            box-shadow: 0 4px 16px rgba(10, 37, 64, 0.06);
+            transition: all 0.3s ease;
         }
-
-        /* Powered By */
+        .form-input:focus {
+            outline: none;
+            border-color: var(--seafoam);
+            box-shadow: 0 4px 20px rgba(126, 200, 200, 0.25);
+        }
+        .form-input::placeholder { color: #a0aec0; }
+        .waiver-scroll {
+            max-height: 380px;
+            overflow-y: auto;
+            margin-bottom: 24px;
+            padding-right: 4px;
+        }
+        .waiver-scroll::-webkit-scrollbar { width: 5px; }
+        .waiver-scroll::-webkit-scrollbar-track { background: rgba(126, 200, 200, 0.1); border-radius: 3px; }
+        .waiver-scroll::-webkit-scrollbar-thumb { background: var(--seafoam); border-radius: 3px; }
+        .waiver-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.06);
+        }
+        .waiver-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--ocean-deep);
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(126, 200, 200, 0.3);
+        }
+        .waiver-card p { font-size: 14px; color: var(--ocean-mid); margin-bottom: 12px; line-height: 1.7; }
+        .waiver-card ul { margin: 12px 0; padding-left: 20px; }
+        .waiver-card li { font-size: 13px; color: var(--ocean-mid); margin-bottom: 8px; line-height: 1.6; }
+        .risk-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .risk-box h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--warning-text);
+            margin-bottom: 12px;
+        }
+        .risk-box ul { columns: 1; padding-left: 18px; margin: 0; }
+        .risk-box li { font-size: 12px; color: var(--warning-text); margin-bottom: 4px; }
+        @media (min-width: 480px) { .risk-box ul { columns: 2; } }
+        .checkbox-group { margin-bottom: 14px; }
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            cursor: pointer;
+            padding: 16px;
+            border-radius: 12px;
+            background: var(--white);
+            box-shadow: 0 4px 16px rgba(10, 37, 64, 0.06);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .checkbox-container:hover { border-color: rgba(126, 200, 200, 0.5); }
+        .checkbox-container.checked { border-color: var(--seafoam); background: var(--seafoam-light); }
+        .checkbox-container input { display: none; }
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            border: 2px solid var(--ocean-light);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: var(--white);
+            margin-top: 2px;
+        }
+        .checkbox-container.checked .custom-checkbox { background: var(--ocean-mid); border-color: var(--ocean-mid); }
+        .custom-checkbox svg { width: 14px; height: 14px; fill: white; opacity: 0; transform: scale(0); transition: all 0.2s ease; }
+        .checkbox-container.checked .custom-checkbox svg { opacity: 1; transform: scale(1); }
+        .checkbox-label { font-size: 14px; color: var(--ocean-deep); line-height: 1.6; }
+        .insurance-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.06);
+        }
+        .insurance-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(126, 200, 200, 0.3);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .insurance-title { font-weight: 600; font-size: 14px; color: var(--ocean-deep); }
+        .zurich-badge { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #003399; }
+        .zurich-badge svg { width: 20px; height: 20px; }
+        .signature-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.06);
+        }
+        .signature-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--ocean-mid);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .signature-pad-wrapper {
+            position: relative;
+            border: 2px dashed rgba(126, 200, 200, 0.5);
+            border-radius: 12px;
+            background: var(--sand-light);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .signature-pad-wrapper.has-signature { border-style: solid; border-color: var(--seafoam); }
+        #signaturePad { width: 100%; height: 160px; display: block; touch-action: none; }
+        .signature-line {
+            position: absolute;
+            bottom: 45px;
+            left: 24px;
+            right: 24px;
+            height: 1px;
+            background: rgba(61, 122, 158, 0.3);
+            pointer-events: none;
+        }
+        .signature-hint {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: var(--ocean-light);
+            pointer-events: none;
+        }
+        .signature-actions { display: flex; justify-content: flex-end; margin-top: 10px; }
+        .clear-btn {
+            background: none;
+            border: none;
+            color: var(--ocean-light);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .clear-btn:hover { background: var(--seafoam-light); color: var(--ocean-mid); }
+        .summary-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.06);
+        }
+        .summary-header {
+            background: linear-gradient(135deg, var(--ocean-light), var(--seafoam));
+            padding: 16px 20px;
+        }
+        .summary-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--white); }
+        .summary-body { padding: 16px 20px; }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(126, 200, 200, 0.2);
+        }
+        .summary-row:last-child { border-bottom: none; }
+        .summary-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--ocean-light); }
+        .summary-value { font-size: 14px; font-weight: 500; color: var(--ocean-deep); text-align: right; }
+        .btn {
+            width: 100%;
+            padding: 16px 28px;
+            font-size: 14px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ocean-mid) 0%, var(--ocean-deep) 100%);
+            color: var(--white);
+            box-shadow: 0 8px 28px rgba(10, 37, 64, 0.25);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(10, 37, 64, 0.35); }
+        .btn-primary:disabled { background: #a0aec0; box-shadow: none; cursor: not-allowed; transform: none; }
+        .btn-secondary {
+            background: transparent;
+            color: var(--ocean-mid);
+            border: 2px solid var(--ocean-light);
+            margin-top: 12px;
+        }
+        .btn-secondary:hover { background: var(--ocean-mid); border-color: var(--ocean-mid); color: var(--white); }
+        .button-group { margin-top: 28px; }
+        .success-container { text-align: center; padding: 40px 20px; }
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--seafoam) 0%, var(--ocean-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            box-shadow: 0 8px 32px rgba(126, 200, 200, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(126, 200, 200, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(126, 200, 200, 0); }
+        }
+        .success-icon svg { width: 50px; height: 50px; fill: var(--white); }
+        .success-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--ocean-deep); margin-bottom: 12px; }
+        .success-message { font-size: 16px; color: var(--ocean-light); line-height: 1.6; margin-bottom: 32px; }
+        .footer { text-align: center; padding: 24px; font-size: 12px; color: var(--ocean-light); margin-top: 20px; }
         .powered-by {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-            font-size: 12px;
-            color: var(--text-light);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(126, 200, 200, 0.3);
+            font-size: 11px;
+            color: var(--ocean-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        .zurich-logo {
-            height: 20px;
-        }
-
-        /* Date display */
-        .date-display {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        /* Scrollable waiver */
-        .waiver-scroll {
-            max-height: 400px;
-            overflow-y: auto;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 4px;
-            margin-bottom: 20px;
-        }
-
-        .waiver-scroll::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .waiver-scroll::-webkit-scrollbar-track {
-            background: var(--bg-light);
-            border-radius: 3px;
-        }
-
-        .waiver-scroll::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 3px;
-        }
+        .powered-by .zurich { font-weight: 700; color: #003399; font-size: 13px; }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="logo">Ocean Pacific <span>Gym & Wellness</span></div>
-        <div class="need-help">Need help? (619) 377-4421</div>
+        <div class="logo-text">Ocean Pacific<span>Gym & Wellness</span></div>
     </header>
-
+    <div class="wave-divider"></div>
     <div class="progress-container">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill" style="width: 33%"></div>
-        </div>
-        <div class="progress-text">
-            <span id="progressStep">Step 1 of 3</span>
-            <span id="progressLabel">Participant Information</span>
-        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 33%"></div></div>
+        <div class="progress-text"><span id="progressStep">Step 1 of 3</span><span id="progressLabel">Participant Information</span></div>
     </div>
-
     <div class="main-container">
-        <!-- Page 1: Participant Information -->
+        <!-- Page 1 -->
         <div class="page active" id="page1">
-            <h1 class="page-title">Therapeutic Cold Plunge Waiver</h1>
-            <p class="page-subtitle">Please provide your information to continue.</p>
-
-            <div class="location-info">
+            <div class="icon-container">
+                <div class="cold-plunge-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+            </div>
+            <h1 class="page-title">Therapeutic Cold Plunge</h1>
+            <p class="page-subtitle">Medical Use Acknowledgment & Waiver</p>
+            <div class="location-card">
                 <p><strong>Ocean Pacific Gym & Wellness</strong></p>
                 <p>4150 Mission Blvd St. 242</p>
                 <p>San Diego, CA 92109</p>
+                <p>(619) 377-4421</p>
             </div>
-
             <div class="date-display" id="currentDate"></div>
-
             <form id="participantForm">
                 <div class="form-section">
                     <div class="section-title">Participant Information</div>
-                    
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="firstName">First Name</label>
-                            <input type="text" class="form-input" id="firstName" placeholder="First name" required autocomplete="given-name">
+                            <input type="text" class="form-input" id="firstName" placeholder="First name" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="lastName">Last Name</label>
-                            <input type="text" class="form-input" id="lastName" placeholder="Last name" required autocomplete="family-name">
+                            <input type="text" class="form-input" id="lastName" placeholder="Last name" required>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="dob">Date of Birth</label>
                         <input type="date" class="form-input" id="dob" required>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="email">Email Address</label>
-                        <input type="email" class="form-input" id="email" placeholder="your@email.com" required autocomplete="email">
+                        <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label" for="phone">Phone Number</label>
-                        <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" required autocomplete="tel">
+                        <input type="tel" class="form-input" id="phone" placeholder="(555) 123-4567" required>
                     </div>
                 </div>
-
-                <div class="button-group">
-                    <button type="submit" class="btn btn-primary">Continue to Waiver</button>
-                </div>
+                <div class="button-group"><button type="submit" class="btn btn-primary">Continue to Waiver</button></div>
             </form>
         </div>
-
-        <!-- Page 2: Waiver & Acknowledgments -->
+        <!-- Page 2 -->
         <div class="page" id="page2">
-            <h1 class="page-title">Medical Use Acknowledgment & Waiver</h1>
-            <p class="page-subtitle">Please review and accept the following terms.</p>
-
+            <h1 class="page-title">Medical Use Acknowledgment</h1>
+            <p class="page-subtitle">Please review and accept the following terms</p>
             <div class="waiver-scroll">
                 <div class="waiver-card">
                     <h3>Medical Use Acknowledgment</h3>
@@ -690,135 +489,99 @@
                         <li>Use of the plunge pool is permitted only under the oversight and direction of a licensed Physical Therapist, licensed Occupational Therapist, or Certified Athletic Trainer.</li>
                     </ul>
                 </div>
-
                 <div class="waiver-card">
                     <h3>Medical Condition Disclosure</h3>
                     <p>By signing this waiver, I confirm that:</p>
                     <ul>
                         <li>I have a medical condition, injury, or therapeutic indication for which cold plunge therapy has been recommended or deemed appropriate.</li>
-                        <li>I have disclosed all relevant medical conditions, contraindications, or health risks to the supervising therapist or trainer, including but not limited to cardiovascular conditions, neurological disorders, circulatory issues, pregnancy, or any condition that may increase risk during cold exposure.</li>
+                        <li>I have disclosed all relevant medical conditions, contraindications, or health risks to the supervising therapist or trainer.</li>
                     </ul>
                 </div>
-
                 <div class="waiver-card">
                     <h3>Assumption of Risk</h3>
-                    <p>I understand that cold plunge therapy involves exposure to cold temperatures and may pose risks including, but not limited to:</p>
-                    
-                    <div class="risk-list">
+                    <p>I understand that cold plunge therapy involves exposure to cold temperatures and may pose risks:</p>
+                    <div class="risk-box">
                         <h4>⚠️ Potential Risks & Contraindications</h4>
                         <ul>
                             <li>Cold shock or dizziness</li>
-                            <li>Changes in heart rate or blood pressure</li>
+                            <li>Changes in heart rate/blood pressure</li>
                             <li>Shortness of breath</li>
                             <li>Muscle cramping or numbness</li>
-                            <li>Unstable angina or recent MI (&lt;6 months)</li>
-                            <li>Severe or uncontrolled hypertension</li>
+                            <li>Unstable angina or recent MI</li>
+                            <li>Severe hypertension</li>
                             <li>Severe arrhythmias</li>
                             <li>Symptomatic heart failure</li>
-                            <li>History of syncope related to cold</li>
+                            <li>History of cold-related syncope</li>
                             <li>Uncontrolled seizure disorder</li>
-                            <li>Recent stroke or TIA (&lt;6 months)</li>
+                            <li>Recent stroke or TIA</li>
                             <li>Impaired thermoregulation</li>
-                            <li>Severe COPD with resting hypoxia</li>
+                            <li>Severe COPD</li>
                             <li>Uncontrolled asthma</li>
                             <li>Uncontrolled diabetes</li>
                             <li>Hypothyroidism</li>
                             <li>Chronic skin infections</li>
-                            <li>Untreated fungal infections</li>
-                            <li>Active communicable disease</li>
                             <li>Pregnancy (unless cleared)</li>
                             <li>Severe Raynaud's phenomenon</li>
                         </ul>
                     </div>
-                    
-                    <p>I knowingly and voluntarily assume all risks associated with participation in therapeutic cold plunge use, whether known or unknown, inherent or otherwise, except to the extent caused by gross negligence or willful misconduct.</p>
+                    <p>I knowingly and voluntarily assume all risks associated with participation in therapeutic cold plunge use.</p>
                 </div>
-
                 <div class="waiver-card">
                     <h3>Compliance With Therapeutic Protocols</h3>
-                    <p>I agree to:</p>
-                    <ul>
-                        <li>Follow all instructions, time limits, temperature parameters, and safety guidelines provided by the supervising therapist or trainer.</li>
-                        <li>Immediately discontinue use and notify staff if I experience discomfort, pain, dizziness, or adverse symptoms.</li>
-                        <li>Use the therapeutic tub only during authorized sessions and not for recreational purposes.</li>
-                    </ul>
+                    <p>I agree to follow all instructions, time limits, temperature parameters, and safety guidelines. I will immediately discontinue use if I experience discomfort, pain, dizziness, or adverse symptoms.</p>
                 </div>
-
                 <div class="waiver-card">
                     <h3>Release of Liability</h3>
-                    <p>To the fullest extent permitted by California law, I hereby release, waive, and discharge Ocean Pacific Gym, its owners, officers, employees, medical director, therapists, trainers, and agents from any and all claims, liabilities, or demands arising from my participation in therapeutic cold plunge use, except where prohibited by law.</p>
+                    <p>To the fullest extent permitted by California law, I hereby release, waive, and discharge Ocean Pacific Gym, its owners, officers, employees, medical director, therapists, trainers, and agents from any and all claims, liabilities, or demands arising from my participation in therapeutic cold plunge use.</p>
                 </div>
             </div>
-
             <div class="checkbox-group">
                 <label class="checkbox-container" id="ackContainer">
                     <input type="checkbox" id="acknowledgmentCheck">
-                    <span class="custom-checkbox">
-                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    </span>
+                    <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
                     <span class="checkbox-label">I have read and understand this Medical Use Acknowledgment & Waiver and I have had the opportunity to ask questions.</span>
                 </label>
             </div>
-
             <div class="checkbox-group">
                 <label class="checkbox-container" id="consentContainer">
                     <input type="checkbox" id="consentCheck">
-                    <span class="custom-checkbox">
-                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    </span>
+                    <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
                     <span class="checkbox-label">I voluntarily consent to participate in therapeutic cold plunge therapy under professional supervision.</span>
                 </label>
             </div>
-
-            <div class="checkbox-group">
+            <div class="insurance-section">
+                <div class="insurance-header">
+                    <span class="insurance-title">Official Provider of Ocean Pacific Gym Coverage & Insurance Partner</span>
+                    <span class="zurich-badge">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#003399"/><text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Z</text></svg>
+                        ZURICH
+                    </span>
+                </div>
                 <label class="checkbox-container" id="insuranceContainer">
                     <input type="checkbox" id="insuranceCheck">
-                    <span class="custom-checkbox">
-                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    </span>
-                    <span class="checkbox-label">I authorize Ocean Pacific Gym & Wellness to share my information with their insurance provider and consent to be contacted regarding coverage and wellness services.</span>
+                    <span class="custom-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+                    <span class="checkbox-label">I agree to receive marketing calls, emails, and text messages from Zurich American Insurance Company, its affiliates, or authorized third-party partners, including via automated dialing systems or prerecorded messages, at the phone number(s) provided. I understand my consent is not required as a condition of purchasing any goods or services, and I may opt-out at any time.</span>
                 </label>
             </div>
-
             <div class="button-group">
                 <button type="button" class="btn btn-primary" id="continueToSign" disabled>Continue to Signature</button>
                 <button type="button" class="btn btn-secondary" id="backToInfo">Back</button>
             </div>
         </div>
-
-        <!-- Page 3: Signature -->
+        <!-- Page 3 -->
         <div class="page" id="page3">
             <h1 class="page-title">Sign to Complete</h1>
-            <p class="page-subtitle">Please sign below to complete your waiver.</p>
-
+            <p class="page-subtitle">Please sign below to finalize your waiver</p>
             <div class="summary-card">
-                <div class="summary-header">
-                    <h3>Participant Summary</h3>
-                </div>
+                <div class="summary-header"><h3>Participant Summary</h3></div>
                 <div class="summary-body">
-                    <div class="summary-row">
-                        <span class="summary-label">Name</span>
-                        <span class="summary-value" id="summaryName">-</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">Date of Birth</span>
-                        <span class="summary-value" id="summaryDob">-</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">Email</span>
-                        <span class="summary-value" id="summaryEmail">-</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">Phone</span>
-                        <span class="summary-value" id="summaryPhone">-</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">Date</span>
-                        <span class="summary-value" id="summaryDate">-</span>
-                    </div>
+                    <div class="summary-row"><span class="summary-label">Name</span><span class="summary-value" id="summaryName">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Date of Birth</span><span class="summary-value" id="summaryDob">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Email</span><span class="summary-value" id="summaryEmail">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Phone</span><span class="summary-value" id="summaryPhone">-</span></div>
+                    <div class="summary-row"><span class="summary-label">Date</span><span class="summary-value" id="summaryDate">-</span></div>
                 </div>
             </div>
-
             <div class="signature-container">
                 <label class="signature-label">Participant Signature</label>
                 <div class="signature-pad-wrapper" id="signatureWrapper">
@@ -826,167 +589,90 @@
                     <div class="signature-line"></div>
                     <div class="signature-hint">Sign here</div>
                 </div>
-                <div class="signature-actions">
-                    <button type="button" class="clear-btn" id="clearSignature">Clear Signature</button>
-                </div>
+                <div class="signature-actions"><button type="button" class="clear-btn" id="clearSignature">Clear Signature</button></div>
             </div>
-
             <div class="button-group">
                 <button type="button" class="btn btn-primary" id="submitWaiver" disabled>Submit Waiver</button>
                 <button type="button" class="btn btn-secondary" id="backToWaiver">Back</button>
             </div>
-
-            <div class="powered-by">
-                <span>POWERED BY</span>
-                <svg class="zurich-logo" viewBox="0 0 100 30" fill="none">
-                    <text x="0" y="22" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#003399">ZURICH</text>
-                </svg>
-            </div>
+            <div class="powered-by"><span>Powered by</span><span class="zurich">ZURICH</span></div>
         </div>
-
-        <!-- Page 4: Success -->
+        <!-- Page 4 -->
         <div class="page" id="page4">
             <div class="success-container">
-                <div class="success-icon">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                </div>
+                <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
                 <h1 class="success-title">You're All Set!</h1>
-                <p class="success-message">Your waiver has been submitted successfully.<br>Enjoy your therapeutic cold plunge experience.</p>
-                
+                <p class="success-message">Your waiver has been submitted successfully.<br>Enjoy your therapeutic cold plunge.</p>
                 <div class="summary-card">
-                    <div class="summary-header">
-                        <h3>Waiver Confirmation</h3>
-                    </div>
+                    <div class="summary-header"><h3>Waiver Confirmation</h3></div>
                     <div class="summary-body">
-                        <div class="summary-row">
-                            <span class="summary-label">Participant</span>
-                            <span class="summary-value" id="confirmName">-</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Date Signed</span>
-                            <span class="summary-value" id="confirmDate">-</span>
-                        </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Time</span>
-                            <span class="summary-value" id="confirmTime">-</span>
-                        </div>
+                        <div class="summary-row"><span class="summary-label">Participant</span><span class="summary-value" id="confirmName">-</span></div>
+                        <div class="summary-row"><span class="summary-label">Date Signed</span><span class="summary-value" id="confirmDate">-</span></div>
+                        <div class="summary-row"><span class="summary-label">Time</span><span class="summary-value" id="confirmTime">-</span></div>
                     </div>
                 </div>
-
                 <button type="button" class="btn btn-primary" id="newWaiver">New Sign In</button>
             </div>
         </div>
-
-        <footer class="footer">
-            <p>© 2026 Ocean Pacific Gym & Wellness. All Rights Reserved.</p>
-        </footer>
+        <footer class="footer"><p>© 2026 Ocean Pacific Gym & Wellness. All Rights Reserved.</p></footer>
     </div>
-
     <script>
-        // Form data
-        let formData = {
-            firstName: '',
-            lastName: '',
-            dob: '',
-            email: '',
-            phone: '',
-            signature: null
-        };
-
-        // Elements
+        let formData = { firstName: '', lastName: '', dob: '', email: '', phone: '', signature: null };
         const pages = document.querySelectorAll('.page');
         const progressFill = document.getElementById('progressFill');
         const progressStep = document.getElementById('progressStep');
         const progressLabel = document.getElementById('progressLabel');
 
-        // Page navigation
         function showPage(pageNum) {
             pages.forEach(p => p.classList.remove('active'));
             document.getElementById(`page${pageNum}`).classList.add('active');
-            
-            const progressInfo = {
-                1: { width: '33%', step: 'Step 1 of 3', label: 'Participant Information' },
-                2: { width: '66%', step: 'Step 2 of 3', label: 'Waiver & Acknowledgment' },
-                3: { width: '100%', step: 'Step 3 of 3', label: 'Signature' },
-                4: { width: '100%', step: 'Complete', label: 'Waiver Submitted' }
-            };
-            
-            progressFill.style.width = progressInfo[pageNum].width;
-            progressStep.textContent = progressInfo[pageNum].step;
-            progressLabel.textContent = progressInfo[pageNum].label;
-            
+            const info = { 1: { w: '33%', s: 'Step 1 of 3', l: 'Participant Information' }, 2: { w: '66%', s: 'Step 2 of 3', l: 'Waiver & Acknowledgment' }, 3: { w: '100%', s: 'Step 3 of 3', l: 'Signature' }, 4: { w: '100%', s: 'Complete', l: 'Waiver Submitted' } };
+            progressFill.style.width = info[pageNum].w;
+            progressStep.textContent = info[pageNum].s;
+            progressLabel.textContent = info[pageNum].l;
             window.scrollTo(0, 0);
         }
 
-        // Date display
         function updateDate() {
-            const now = new Date();
-            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         }
         updateDate();
 
-        // Phone formatting
         document.getElementById('phone').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 6) {
-                value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
-            } else if (value.length >= 3) {
-                value = `(${value.slice(0,3)}) ${value.slice(3)}`;
-            }
-            e.target.value = value;
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length >= 6) v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6,10)}`;
+            else if (v.length >= 3) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
+            e.target.value = v;
         });
 
-        // Page 1 form submission
         document.getElementById('participantForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             formData.firstName = document.getElementById('firstName').value;
             formData.lastName = document.getElementById('lastName').value;
             formData.dob = document.getElementById('dob').value;
             formData.email = document.getElementById('email').value;
             formData.phone = document.getElementById('phone').value;
-            
             showPage(2);
         });
 
-        // Checkbox handling
         const checkboxContainers = ['ackContainer', 'consentContainer', 'insuranceContainer'];
         const checkboxInputs = ['acknowledgmentCheck', 'consentCheck', 'insuranceCheck'];
-        
-        checkboxContainers.forEach((containerId, index) => {
-            const container = document.getElementById(containerId);
-            const input = document.getElementById(checkboxInputs[index]);
-            
+        checkboxContainers.forEach((cid, i) => {
+            const container = document.getElementById(cid);
+            const input = document.getElementById(checkboxInputs[i]);
             container.addEventListener('click', function() {
                 input.checked = !input.checked;
                 container.classList.toggle('checked', input.checked);
-                updateContinueButton();
+                document.getElementById('continueToSign').disabled = !checkboxInputs.every(id => document.getElementById(id).checked);
             });
         });
 
-        function updateContinueButton() {
-            const allChecked = checkboxInputs.every(id => document.getElementById(id).checked);
-            document.getElementById('continueToSign').disabled = !allChecked;
-        }
-
-        // Page 2 navigation
         document.getElementById('continueToSign').addEventListener('click', function() {
-            // Update summary
             document.getElementById('summaryName').textContent = `${formData.firstName} ${formData.lastName}`;
-            document.getElementById('summaryDob').textContent = new Date(formData.dob).toLocaleDateString('en-US', {
-                month: 'long', day: 'numeric', year: 'numeric'
-            });
+            document.getElementById('summaryDob').textContent = new Date(formData.dob).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
             document.getElementById('summaryEmail').textContent = formData.email;
             document.getElementById('summaryPhone').textContent = formData.phone;
-            document.getElementById('summaryDate').textContent = new Date().toLocaleDateString('en-US', {
-                month: 'long', day: 'numeric', year: 'numeric'
-            });
-            
+            document.getElementById('summaryDate').textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
             showPage(3);
             initSignaturePad();
         });
@@ -994,86 +680,41 @@
         document.getElementById('backToInfo').addEventListener('click', () => showPage(1));
         document.getElementById('backToWaiver').addEventListener('click', () => showPage(2));
 
-        // Signature Pad
         let canvas, ctx, isDrawing = false, hasSignature = false;
-
         function initSignaturePad() {
             canvas = document.getElementById('signaturePad');
             ctx = canvas.getContext('2d');
-            
-            // Set canvas size
             const wrapper = canvas.parentElement;
             canvas.width = wrapper.offsetWidth;
-            canvas.height = 150;
-            
-            ctx.strokeStyle = '#1a1a2e';
-            ctx.lineWidth = 2;
+            canvas.height = 160;
+            ctx.strokeStyle = '#0a2540';
+            ctx.lineWidth = 2.5;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
-            
-            // Event listeners
             canvas.addEventListener('mousedown', startDrawing);
             canvas.addEventListener('mousemove', draw);
             canvas.addEventListener('mouseup', stopDrawing);
             canvas.addEventListener('mouseleave', stopDrawing);
-            
             canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
             canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
             canvas.addEventListener('touchend', stopDrawing);
         }
-
-        function getPos(e) {
-            const rect = canvas.getBoundingClientRect();
-            return {
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top
-            };
-        }
-
-        function startDrawing(e) {
-            isDrawing = true;
-            const pos = getPos(e);
-            ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
-        }
-
+        function getPos(e) { const r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+        function startDrawing(e) { isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }
         function draw(e) {
             if (!isDrawing) return;
-            const pos = getPos(e);
-            ctx.lineTo(pos.x, pos.y);
+            const p = getPos(e);
+            ctx.lineTo(p.x, p.y);
             ctx.stroke();
-            
             if (!hasSignature) {
                 hasSignature = true;
                 document.getElementById('signatureWrapper').classList.add('has-signature');
                 document.getElementById('submitWaiver').disabled = false;
             }
         }
-
-        function stopDrawing() {
-            isDrawing = false;
-        }
-
-        function handleTouchStart(e) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const mouseEvent = new MouseEvent('mousedown', {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            canvas.dispatchEvent(mouseEvent);
-        }
-
-        function handleTouchMove(e) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const mouseEvent = new MouseEvent('mousemove', {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            canvas.dispatchEvent(mouseEvent);
-        }
-
+        function stopDrawing() { isDrawing = false; }
+        function handleTouchStart(e) { e.preventDefault(); const t = e.touches[0]; canvas.dispatchEvent(new MouseEvent('mousedown', { clientX: t.clientX, clientY: t.clientY })); }
+        function handleTouchMove(e) { e.preventDefault(); const t = e.touches[0]; canvas.dispatchEvent(new MouseEvent('mousemove', { clientX: t.clientX, clientY: t.clientY })); }
         document.getElementById('clearSignature').addEventListener('click', function() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             hasSignature = false;
@@ -1081,59 +722,28 @@
             document.getElementById('submitWaiver').disabled = true;
         });
 
-        // Submit waiver
         document.getElementById('submitWaiver').addEventListener('click', function() {
             formData.signature = canvas.toDataURL();
-            
             const now = new Date();
             document.getElementById('confirmName').textContent = `${formData.firstName} ${formData.lastName}`;
-            document.getElementById('confirmDate').textContent = now.toLocaleDateString('en-US', {
-                month: 'long', day: 'numeric', year: 'numeric'
-            });
-            document.getElementById('confirmTime').textContent = now.toLocaleTimeString('en-US', {
-                hour: 'numeric', minute: '2-digit'
-            });
-            
-            // Log data (would send to server)
-            console.log('Waiver submitted:', {
-                ...formData,
-                timestamp: now.toISOString()
-            });
-            
+            document.getElementById('confirmDate').textContent = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            document.getElementById('confirmTime').textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            console.log('Waiver submitted:', { ...formData, timestamp: now.toISOString() });
             showPage(4);
         });
 
-        // New waiver
         document.getElementById('newWaiver').addEventListener('click', function() {
-            // Reset form
             document.getElementById('participantForm').reset();
-            checkboxInputs.forEach(id => {
-                document.getElementById(id).checked = false;
-            });
-            checkboxContainers.forEach(id => {
-                document.getElementById(id).classList.remove('checked');
-            });
+            checkboxInputs.forEach(id => { document.getElementById(id).checked = false; });
+            checkboxContainers.forEach(id => { document.getElementById(id).classList.remove('checked'); });
             document.getElementById('continueToSign').disabled = true;
-            
-            if (ctx) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
+            if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
             hasSignature = false;
-            document.getElementById('signatureWrapper').classList.remove('has-signature');
+            if (document.getElementById('signatureWrapper')) document.getElementById('signatureWrapper').classList.remove('has-signature');
             document.getElementById('submitWaiver').disabled = true;
-            
-            formData = {
-                firstName: '',
-                lastName: '',
-                dob: '',
-                email: '',
-                phone: '',
-                signature: null
-            };
-            
+            formData = { firstName: '', lastName: '', dob: '', email: '', phone: '', signature: null };
             showPage(1);
         });
     </script>
 </body>
 </html>
-
